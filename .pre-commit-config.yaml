@@ -1,0 +1,103 @@
+repos:
+- repo: https://github.com/kynan/nbstripout
+  rev: 0.5.0
+  hooks:
+    - id: nbstripout
+# repos:
+# -   repo: https://github.com/pre-commit/pre-commit-hooks
+#     rev: v2.5.0
+#     hooks:
+#     -   id: check-yaml
+#     -   id: end-of-file-fixer
+#     -   id: trailing-whitespace
+# -   repo: https://github.com/psf/black
+#     rev: 19.10b0
+#     hooks:
+#     -   id: black
+repos:
+- repo: https://github.com/ambv/black
+  rev: 18.6b4
+  hooks:
+    - id: black
+      args: [--line-length=120, --safe]
+      language_version: python3.10
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v1.4.0
+  hooks:
+  - id: trailing-whitespace
+  - id: flake8
+    args:
+    # 79 chars is too strict and we don't have 80-char terminals nowadays,
+    # 160 chars is too much since it doesn't let us use split view efficiently:
+    - --max-line-length=120
+    - --ignore=E731
+  - id: check-merge-conflict
+  - id: end-of-file-fixer
+  - id: name-tests-test
+    include: tests/
+    args:
+    - --django
+  - id: debug-statements
+  - id: check-added-large-files
+  - id: check-ast
+  - id: check-byte-order-marker
+  - id: check-case-conflict
+  # disabled due to pre-commit/pre-commit-hooks#159
+  #- id: check-docstring-first
+  - id: check-json
+  - id: pretty-format-json
+    args:
+    - --autofix
+    - --no-sort-keys
+  - id: check-symlinks
+  - id: check-yaml
+  - id: detect-private-key
+  - id: requirements-txt-fixer
+
+# hook to remove tabs
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.1.5
+  hooks:
+  - id: remove-tabs
+    exclude: Makefile|docs/Makefile|docs/make.bat
+
+# hook warn about alt text for images in html
+- repo: https://github.com/Lucas-C/pre-commit-hooks-lxml
+  rev: v1.1.0
+  hooks:
+  - id: forbid-html-img-without-alt-text
+
+# A tool (and pre-commit hook) to automatically upgrade syntax for newer versions of the language.
+- repo: https://github.com/asottile/pyupgrade
+  rev: v1.4.0
+  hooks:
+  - id: pyupgrade
+
+# Mirror of the pydocstyle (formerly pep257) package for pre-commit.
+- repo: https://github.com/MSchuwalow/pre-commit-mirrors-pydocstyle
+  rev: v0.0.3
+  hooks:
+  - id: pydocstyle
+
+# nice thing to organise imports and prevent merge conflicts
+#- repo: https://github.com/asottile/reorder_python_imports
+#  rev: master
+#  hooks:
+#    - id: reorder-python-imports
+
+# Pylint workaround for https://github.com/pre-commit/mirrors-pylint/issues/9
+# requires pylint installed inside project environment before running
+#
+
+
+
+#    - --ignore-patterns=<pattern>
+#    - --jobs=<n-processes>
+
+
+## A tool to check shell scpripts, wrapper around https://www.shellcheck.net
+#- repo: https://github.com/detailyang/pre-commit-shell
+#  sha: 75af325
+#  hooks:
+#  - id: shell-lint
