@@ -16,6 +16,7 @@ graphviz = "^0.20.1"
 jupyter-black = "^0.3.1"
 xgboost = "^1.6.1"
 matplotlib = "^3.5.3"
+woodwork = "^0.17.2"
 
 [tool.poetry.dev-dependencies]
 ipykernel = "^6.15.1"
