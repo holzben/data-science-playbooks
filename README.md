@@ -1,4 +1,4 @@
-# Data Science Playbooks
+# Data Science Playbooks :notebook:
 
 The aim of this repo is to collect some examples, tutorials, and code snippets that I found interesting. Input in form of contributions, comments, notes or inputs are welcome at any time.
 
